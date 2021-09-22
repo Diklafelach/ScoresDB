@@ -6,6 +6,8 @@ public class Main {
 
         var client = new Connection("mongodb://host1:27017");
         client.connect();
+
+
     }
 
 }
