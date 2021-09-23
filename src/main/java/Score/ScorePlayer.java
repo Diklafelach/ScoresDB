@@ -1,19 +1,21 @@
 package Score;
+import org.bson.Document;
 
 public class ScorePlayer {
+    private String score;
 
-    private int score;
-
-    public ScorePlayer(int score){
+    public ScorePlayer(String score){
 
         this.score = score;
     }
-
-    public int getScore() {
+    public String getScore() {
         return score;
     }
-
-    public void setScore(int score) {
+    public void setScore(String score) {
         this.score = score;
+    }
+    // casting to document
+    public Document toDocument() {
+        return new Document().append("_score",score);
     }
 }
