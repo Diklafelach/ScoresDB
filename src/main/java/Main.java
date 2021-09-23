@@ -9,8 +9,9 @@ public class Main {
         var client = new Connection("mongodb://127.0.0.1:27017");
         client.connect();
         var DB = new DB(client,"Scores");
-        DB.AddScore(new ScorePlayer("10"));
-
+        if(!DB.exist("Dikla Felach")) {
+            DB.AddScore(new ScorePlayer(10, "Dikla Felach"));
+        }
 
 
     }

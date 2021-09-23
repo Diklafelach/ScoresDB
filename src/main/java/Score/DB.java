@@ -22,4 +22,10 @@ public class DB {
     {
         _score.insertOne(score.toDocument());
     }
+    //check if the player exist
+    public  boolean exist(String name)
+    {
+        var answer = _score.find(new Document("fullName",name)).first();
+        return answer != null;
+    }
 }
