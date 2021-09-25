@@ -21,19 +21,19 @@ public class DB {
         //getting the collection
         _score = _database.getCollection("ScorePlayer");
     }
-    //to insert  to db we must insert a document
+    //to insert  to db we must insert a document - c in crud (create)
     public void AddPlayer(ScorePlayer score)
     {
         _score.insertOne(score.toDocument());
     }
-    //check if the player exist
+    //check if the player exist - r in crud (read)
     public  boolean exist(String name)
     {
         var answer = _score.find(Filters.eq("_fullname",name)).first();
         return answer != null;
     }
-
-    public void AddingScore( ScorePlayer scorePlayer, int points)
+    // u in crud (update)
+    public void UpdatingScore(ScorePlayer scorePlayer, int points)
     {
         int newPoints = scorePlayer.getScore()+points;
         Document search = new Document("_fullname",scorePlayer.getFullname());
@@ -43,8 +43,10 @@ public class DB {
               _score.updateOne(search,set);
               scorePlayer.setScore(newPoints);
         }
-
-
+    }
+    //d in curd (delete)
+    public void Delete(String name){
+        _score.deleteOne(Filters.eq("_fullname", name));
     }
 
 }
